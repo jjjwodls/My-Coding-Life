@@ -1,0 +1,95 @@
+<meta data-n-head="true" name="twitter:image" data-hid="twitter:image" content="https://maxcdn.icons8.com/Share/category/business.png">
+<meta data-n-head="true" name="og:image" data-hid="og:image" content="https://maxcdn.icons8.com/Share/category/business.png">
+<img alt="Equity Security icon" src="https://img.icons8.com/color/2x/equity-security.png" style="height:48px;width:48px;">
+<img alt="Bonds icon" src="https://img.icons8.com/color/2x/bonds.png" style="height:48px;width:48px;">
+<img alt="Collectibles icon" src="https://img.icons8.com/color/2x/collectibles.png" style="height:48px;width:48px;">
+<img alt="Commodity icon" src="https://img.icons8.com/color/2x/commodity.png" style="height:48px;width:48px;">
+<img alt="Address Book icon" src="https://img.icons8.com/color/2x/address-book.png" style="height:48px;width:48px;">
+<img alt="Internet icon" src="https://img.icons8.com/color/2x/internet.png" style="height:48px;width:48px;">
+<img alt="Contact Details icon" src="https://img.icons8.com/color/2x/business-contact.png" style="height:48px;width:48px;">
+<img alt="Conference icon" src="https://img.icons8.com/color/2x/conference.png" style="height:48px;width:48px;">
+<img alt="People icon" src="https://img.icons8.com/color/2x/conference-call.png" style="height:48px;width:48px;">
+<img alt="Collaboration icon" src="https://img.icons8.com/color/2x/collaboration.png" style="height:48px;width:48px;">
+<img alt="Answers icon" src="https://img.icons8.com/color/2x/answers.png" style="height:48px;width:48px;">
+<img alt="Questions icon" src="https://img.icons8.com/color/2x/questions.png" style="height:48px;width:48px;">
+<img alt="Invite icon" src="https://img.icons8.com/color/2x/invite.png" style="height:48px;width:48px;">
+<img alt="Feedback icon" src="https://img.icons8.com/color/2x/feedback.png" style="height:48px;width:48px;">
+<img alt="FAQ icon" src="https://img.icons8.com/color/2x/faq.png" style="height:48px;width:48px;">
+<img alt="Inspection icon" src="https://img.icons8.com/color/2x/inspection.png" style="height:48px;width:48px;">
+<img alt="Butting In icon" src="https://img.icons8.com/color/2x/butting-in.png" style="height:48px;width:48px;">
+<img alt="Privacy icon" src="https://img.icons8.com/color/2x/privacy.png" style="height:48px;width:48px;">
+<img alt="Sorting icon" src="https://img.icons8.com/color/2x/sorting-answers.png" style="height:48px;width:48px;">
+<img alt="Questionnaire icon" src="https://img.icons8.com/color/2x/question-group.png" style="height:48px;width:48px;">
+<img alt="Idea Bank icon" src="https://img.icons8.com/color/2x/idea-bank.png" style="height:48px;width:48px;">
+<img alt="Video Conference icon" src="https://img.icons8.com/color/2x/video-conference.png" style="height:48px;width:48px;">
+<img alt="Fee icon" src="https://img.icons8.com/color/2x/no-hidden-fee.png" style="height:48px;width:48px;">
+<img alt="New Contact icon" src="https://img.icons8.com/color/2x/new-contact.png" style="height:48px;width:48px;">
+<img alt="Contact Us icon" src="https://img.icons8.com/color/2x/add-contact-to-company.png" style="height:48px;width:48px;">
+<img alt="Conflict icon" src="https://img.icons8.com/color/2x/conflict.png" style="height:48px;width:48px;">
+<img alt="Trust icon" src="https://img.icons8.com/color/2x/trust.png" style="height:48px;width:48px;">
+<img alt="Multichannel icon" src="https://img.icons8.com/color/2x/sales-channels.png" style="height:48px;width:48px;">
+<img alt="Reseller icon" src="https://img.icons8.com/color/2x/reseller.png" style="height:48px;width:48px;">
+<img alt="Communication icon" src="https://img.icons8.com/color/2x/communication.png" style="height:48px;width:48px;">
+<img alt="Accuracy icon" src="https://img.icons8.com/color/2x/accuracy.png" style="height:48px;width:48px;">
+<img alt="Customer Insight icon" src="https://img.icons8.com/color/2x/customer-insight.png" style="height:48px;width:48px;">
+<img alt="Client Management icon" src="https://img.icons8.com/color/2x/client-management.png" style="height:48px;width:48px;">
+<img alt="Omnichannel icon" src="https://img.icons8.com/color/2x/omnichannel.png" style="height:48px;width:48px;">
+<img alt="Manager icon" src="https://img.icons8.com/color/2x/manager.png" style="height:48px;width:48px;">
+<img alt="Online Support icon" src="https://img.icons8.com/color/2x/online-support.png" style="height:48px;width:48px;">
+<img alt="Businessman icon" src="https://img.icons8.com/color/2x/businessman.png" style="height:48px;width:48px;">
+<img alt="Businesswoman icon" src="https://img.icons8.com/color/2x/businesswoman.png" style="height:48px;width:48px;">
+<img alt="technical support icon" src="https://img.icons8.com/color/2x/technical-support.png" style="height:48px;width:48px;">
+<img alt="VIP icon" src="https://img.icons8.com/color/2x/vip.png" style="height:48px;width:48px;">
+<img alt="Name Tag icon" src="https://img.icons8.com/color/2x/employee-card.png" style="height:48px;width:48px;">
+<img alt="Supplier icon" src="https://img.icons8.com/color/2x/supplier.png" style="height:48px;width:48px;">
+<img alt="Collaboration Female Male icon" src="https://img.icons8.com/color/2x/collaboration-female-male.png" style="height:48px;width:48px;">
+<img alt="Planner icon" src="https://img.icons8.com/color/2x/planner.png" style="height:48px;width:48px;">
+<img alt="Tree Structure icon" src="https://img.icons8.com/color/2x/tree-structure.png" style="height:48px;width:48px;">
+<img alt="Target icon" src="https://img.icons8.com/color/2x/define-location.png" style="height:48px;width:48px;">
+<img alt="Flow icon" src="https://img.icons8.com/color/2x/serial-tasks.png" style="height:48px;width:48px;">
+<img alt="Hierarchy icon" src="https://img.icons8.com/color/2x/parallel-tasks.png" style="height:48px;width:48px;">
+<img alt="Approval icon" src="https://img.icons8.com/color/2x/approval.png" style="height:48px;width:48px;">
+<img alt="Collect icon" src="https://img.icons8.com/color/2x/collect.png" style="height:48px;width:48px;">
+<img alt="Reset icon" src="https://img.icons8.com/color/2x/recurring-appointment.png" style="height:48px;width:48px;">
+<img alt="Notification icon" src="https://img.icons8.com/color/2x/appointment-reminders.png" style="height:48px;width:48px;">
+<img alt="Input icon" src="https://img.icons8.com/color/2x/multiple-inputs.png" style="height:48px;width:48px;">
+<img alt="Schedule icon" src="https://img.icons8.com/color/2x/overtime.png" style="height:48px;width:48px;">
+<img alt="Leave icon" src="https://img.icons8.com/color/2x/leave.png" style="height:48px;width:48px;">
+<img alt="Expired icon" src="https://img.icons8.com/color/2x/expired.png" style="height:48px;width:48px;">
+<img alt="Todo List icon" src="https://img.icons8.com/color/2x/todo-list.png" style="height:48px;width:48px;">
+<img alt="Survey icon" src="https://img.icons8.com/color/2x/survey.png" style="height:48px;width:48px;">
+<img alt="Process icon" src="https://img.icons8.com/color/2x/process.png" style="height:48px;width:48px;">
+<img alt="Unit icon" src="https://img.icons8.com/color/2x/org-unit.png" style="height:48px;width:48px;">
+<img alt="To Do icon" src="https://img.icons8.com/color/2x/to-do.png" style="height:48px;width:48px;">
+<img alt="High Priority icon" src="https://img.icons8.com/color/2x/high-priority.png" style="height:48px;width:48px;">
+<img alt="Low Priority icon" src="https://img.icons8.com/color/2x/low-priority.png" style="height:48px;width:48px;">
+<img alt="Medium Priority icon" src="https://img.icons8.com/color/2x/medium-priority.png" style="height:48px;width:48px;">
+<img alt="Recurring Appointment Exception icon" src="https://img.icons8.com/color/2x/recurring-appointment-exception.png" style="height:48px;width:48px;">
+<img alt="Tasks icon" src="https://img.icons8.com/color/2x/tasks.png" style="height:48px;width:48px;">
+<img alt="Goal icon" src="https://img.icons8.com/color/2x/goal.png" style="height:48px;width:48px;">
+<img alt="Project icon" src="https://img.icons8.com/color/2x/project.png" style="height:48px;width:48px;">
+<img alt="Wish List icon" src="https://img.icons8.com/color/2x/wish-list.png" style="height:48px;width:48px;">
+<img alt="Task Completed icon" src="https://img.icons8.com/color/2x/task-completed.png" style="height:48px;width:48px;">
+<img alt="Group of Projects icon" src="https://img.icons8.com/color/2x/group-of-projects.png" style="height:48px;width:48px;">
+<img alt="Journal icon" src="https://img.icons8.com/color/2x/journal.png" style="height:48px;width:48px;">
+<img alt="Task icon" src="https://img.icons8.com/color/2x/task.png" style="height:48px;width:48px;">
+<img alt="Organization icon" src="https://img.icons8.com/color/2x/organization.png" style="height:48px;width:48px;">
+<img alt="Department icon" src="https://img.icons8.com/color/2x/department.png" style="height:48px;width:48px;">
+<img alt="Barber Pole icon" src="https://img.icons8.com/color/2x/barber-pole.png" style="height:48px;width:48px;">
+<img alt="Confectionery icon" src="https://img.icons8.com/color/2x/confectionery.png" style="height:48px;width:48px;">
+<img alt="Barbershop icon" src="https://img.icons8.com/color/2x/barbershop.png" style="height:48px;width:48px;">
+<img alt="Blog icon" src="https://img.icons8.com/color/2x/blog.png" style="height:48px;width:48px;">
+<img alt="Small Business icon" src="https://img.icons8.com/color/2x/small-business.png" style="height:48px;width:48px;">
+<img alt="Rent icon" src="https://img.icons8.com/color/2x/sell-property.png" style="height:48px;width:48px;">
+<img alt="Management icon" src="https://img.icons8.com/color/2x/commercial-development-management.png" style="height:48px;width:48px;">
+<img alt="Coworking icon" src="https://img.icons8.com/color/2x/coworking.png" style="height:48px;width:48px;">
+<img alt="Cleaning Service icon" src="https://img.icons8.com/color/2x/cleaning-service.png" style="height:48px;width:48px;">
+<img alt="Bar Chart icon" src="https://img.icons8.com/color/2x/bar-chart.png" style="height:48px;width:48px;">
+<img alt="Line Chart icon" src="https://img.icons8.com/color/2x/line-chart.png" style="height:48px;width:48px;">
+<img alt="Account icon" src="https://img.icons8.com/color/2x/positive-dynamic.png" style="height:48px;width:48px;">
+<img alt="Decline icon" src="https://img.icons8.com/color/2x/negative-dynamic.png" style="height:48px;width:48px;">
+<img alt="Timeline icon" src="https://img.icons8.com/color/2x/timeline.png" style="height:48px;width:48px;">
+<img alt="Gantt Chart icon" src="https://img.icons8.com/color/2x/gantt-chart.png" style="height:48px;width:48px;">
+<img alt="Scatter Plot icon" src="https://img.icons8.com/color/2x/scatter-plot.png" style="height:48px;width:48px;">
+<img alt="Mind Map icon" src="https://img.icons8.com/color/2x/mind-map.png" style="height:48px;width:48px;">
+<img src="/vue-static/icon/collection-new.png" class="welcome-image" data-v-214f073c>
