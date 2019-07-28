@@ -1,4 +1,4 @@
-package StringTest;
+/*package StringTest;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
@@ -35,7 +35,7 @@ public class EncryptAESTest {
 
 		int milli = cal.get(Calendar.MILLISECOND);
 		System.out.println(milli);
-		/*
+		
 		String base = "password123";
 		 
         try{
@@ -55,7 +55,7 @@ public class EncryptAESTest {
  
         } catch(Exception ex){
             throw new RuntimeException(ex);
-        }*/
+        }
 	}
 	
 
@@ -129,3 +129,4 @@ public class EncryptAESTest {
     }    
 
 }
+*/
