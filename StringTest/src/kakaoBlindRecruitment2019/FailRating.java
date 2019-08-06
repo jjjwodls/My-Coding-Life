@@ -2,7 +2,10 @@ package kakaoBlindRecruitment2019;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 슈퍼 게임 개발자 오렐리는 큰 고민에 빠졌다. 그녀가 만든 프랜즈 오천성이 대성공을 거뒀지만, 요즘 신규 사용자의 수가 급감한 것이다.
@@ -57,11 +60,12 @@ import java.util.List;
 public class FailRating {
 	
 	public static void main(String[] args) {
-		int N = 5;
-		int [] stages = {2, 1, 2, 6, 2, 4, 3, 3};		
-		//int N = 4;
-		//int [] stages = {4, 4, 4, 4, 4};
+		//int N = 5;
+		//int [] stages = {2, 1, 2, 6, 2, 4, 3, 3};		
+		int N = 4;
+		int [] stages = {4, 4, 4, 4, 4};
 		solution(N,stages);
+		
 	}
 	
 	
@@ -75,6 +79,8 @@ public class FailRating {
     	int remainUser = stagesLength;
     	int curStageUser = 0;
     	
+    	Map<Float,Integer> map = new HashMap<Float,Integer>();
+    	
     	List<Float> resultList = new ArrayList<Float>();
     	Float failRating = null;
     	int i = 0;
@@ -84,18 +90,22 @@ public class FailRating {
     			resultList.add((float) 0.0);
         	}
     	}
-    	remainUser = remainUser - i;
+    	//remainUser = remainUser - i;
     	int curStage = firstStage;
     	
-    	for(;i < stagesLength; i++){
+    	for(i=0 ;i < stagesLength; i++){
 
     		if(stages[i] > N){
+    			failRating = (float)curStageUser/remainUser;
+    			resultList.add(failRating);
+    			map.put(failRating, resultList.size());
     			curStageUser = 0;
     			break;
     		}else if(curStage < stages[i]){
     			failRating = (float)curStageUser/remainUser;
     			resultList.add(failRating);
-    			curStage++;
+    			map.put(failRating, resultList.size());
+    			curStage = stages[i];
     			remainUser = remainUser - curStageUser;
     			curStageUser = 1;
     		}else if(curStage == stages[i] || stages[i] == N){
@@ -105,11 +115,50 @@ public class FailRating {
     	failRating = (float)curStageUser/remainUser;
 		resultList.add(failRating);
     	
+		Float[] resultAry = resultList.toArray(new Float[resultList.size()]);
+		for(i = 0 ; i < resultAry.length ; i++){
+    		System.out.println(resultAry[i]);
+    	}
+		System.out.println("=============");
+		System.out.println("=============");
+		Arrays.sort(resultAry);
+		
+		for(i = 0 ; i < resultAry.length ; i++){
+    		System.out.println(resultAry[i]);
+    	}
+		
+		System.out.println("=============");
+		System.out.println("=============");
+		
+		Collections.sort(resultList); //jdk 버전 확인하기
     	
     	for(i = 0 ; i < resultList.size() ; i++){
     		System.out.println(resultList.get(i));
     	}
-        
+
+    	Collections.reverse(resultList);
+    	System.out.println("=============");
+    	Integer stageSort = null;
+    	int beforeSort = 0;
+    	for(i = 0 ; i < resultList.size() ; i++){
+    		//System.out.println(resultList.get(i));
+    		stageSort = map.get(resultList.get(i));
+    		if(stageSort == null){
+    			answer[i] = i+1;
+    		}else{
+    			if(beforeSort == stageSort){
+    				answer[i] = stageSort+1;
+    			}else{
+    				answer[i] = stageSort;
+    			}
+    			beforeSort = answer[i];
+    		}
+    	}
+    	
+    	for(i = 0 ; i < answer.length; i++){
+    		System.out.println(answer[i]);
+    	}
+    	
         return answer;
     }
 }
