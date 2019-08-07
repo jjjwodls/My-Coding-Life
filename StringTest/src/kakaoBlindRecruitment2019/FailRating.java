@@ -3,6 +3,7 @@ package kakaoBlindRecruitment2019;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,11 @@ import java.util.Map;
  * @author JJI
  * 
  */
+
+/**
+ * 정렬 기준 , 그리고 객체 생성을 하면서 구현하자.
+ *
+ */
 public class FailRating {
 	
 	public static void main(String[] args) {
@@ -64,7 +70,11 @@ public class FailRating {
 		//int [] stages = {2, 1, 2, 6, 2, 4, 3, 3};		
 		int N = 4;
 		int [] stages = {4, 4, 4, 4, 4};
-		solution(N,stages);
+		//solution(N,stages);
+		int[] rst = solution2(N,stages);
+		for(int i = 0 ; i < rst.length ; i++){
+			System.out.println(rst[i]);
+		}
 		
 	}
 	
@@ -82,12 +92,21 @@ public class FailRating {
     	Map<Float,Integer> map = new HashMap<Float,Integer>();
     	
     	List<Float> resultList = new ArrayList<Float>();
+    	List<FailSortObject> resultList2 = new ArrayList<FailSortObject>();
+    	
+    	
     	Float failRating = null;
     	int i = 0;
-    	int firstStage =stages[0]; // 첫번째 배열의 스테이지. 
+    	int firstStage =stages[0]; // 첫번째 배열의 스테이지.
+    	FailSortObject failSortObject = null; 
     	if(firstStage > 1){
     		for(i = 0 ; i < firstStage-1; i++){
     			resultList.add((float) 0.0);
+    			failSortObject = new FailSortObject();
+    			failSortObject.setIdx(i+1);
+    			failSortObject.setFailRating((float) 0.0);
+    			resultList2.add(failSortObject);
+    			
         	}
     	}
     	//remainUser = remainUser - i;
@@ -100,6 +119,11 @@ public class FailRating {
     			resultList.add(failRating);
     			map.put(failRating, resultList.size());
     			curStageUser = 0;
+    			failSortObject = new FailSortObject();
+    			failSortObject.setIdx(curStage);
+    			failSortObject.setFailRating(failRating);
+    			resultList2.add(failSortObject);
+    			
     			break;
     		}else if(curStage < stages[i]){
     			failRating = (float)curStageUser/remainUser;
@@ -107,6 +131,10 @@ public class FailRating {
     			map.put(failRating, resultList.size());
     			curStage = stages[i];
     			remainUser = remainUser - curStageUser;
+    			failSortObject = new FailSortObject();
+    			failSortObject.setIdx(curStage);
+    			failSortObject.setFailRating(failRating);
+    			resultList2.add(failSortObject);
     			curStageUser = 1;
     		}else if(curStage == stages[i] || stages[i] == N){
     			curStageUser++;
@@ -114,6 +142,10 @@ public class FailRating {
     	}
     	failRating = (float)curStageUser/remainUser;
 		resultList.add(failRating);
+		failSortObject = new FailSortObject();
+		failSortObject.setIdx(curStage);
+		failSortObject.setFailRating(failRating);
+		resultList2.add(failSortObject);
     	
 		Float[] resultAry = resultList.toArray(new Float[resultList.size()]);
 		for(i = 0 ; i < resultAry.length ; i++){
@@ -161,4 +193,159 @@ public class FailRating {
     	
         return answer;
     }
+    
+    
+    public static int[] solution2(int N, int[] stages) {
+    	
+    	int[] answer = {};
+    	
+    	Arrays.sort(stages);
+    	int stagesLength = stages.length;
+    	int remainUser = stagesLength;
+    	int curStageUser = 0;
+    	List<FailSortObject> resultList2 = new ArrayList<FailSortObject>();
+    	
+    	Float failRating = null;
+    	int i = 0;
+    	int firstStage =stages[0]; // 첫번째 배열의 스테이지.
+    	FailSortObject failSortObject = null; 
+    	if(firstStage > 1){
+    		for(i = 0 ; i < firstStage-1; i++){
+    			failSortObject = new FailSortObject();
+    			failSortObject.setIdx(i+1);
+    			failSortObject.setFailRating((float) 0.0);
+    			resultList2.add(failSortObject);
+    			
+        	}
+    	}
+    	//remainUser = remainUser - i;
+    	int curStage = firstStage;
+    	
+    	for(i=0 ;i < stagesLength; i++){
+
+    		if(stages[i] > N){
+    			failRating = (float)curStageUser/remainUser;
+    			curStageUser = 0;
+    			failSortObject = new FailSortObject();
+    			failSortObject.setIdx(resultList2.size()+1);
+    			failSortObject.setFailRating(failRating);
+    			resultList2.add(failSortObject);
+    			break;
+    		}else if(curStage < stages[i]){
+    			failRating = (float)curStageUser/remainUser;
+    			curStage = stages[i];
+    			remainUser = remainUser - curStageUser;
+    			failSortObject = new FailSortObject();
+    			failSortObject.setIdx(resultList2.size()+1);
+    			failSortObject.setFailRating(failRating);
+    			resultList2.add(failSortObject);
+    			curStageUser = 1;
+    		}else if(curStage == stages[i] || stages[i] == N){
+    			curStageUser++;
+    		}
+    	}
+    	failRating = (float)curStageUser/remainUser;
+		failSortObject = new FailSortObject();
+		failSortObject.setIdx(resultList2.size()+1);
+		failSortObject.setFailRating(failRating);
+		resultList2.add(failSortObject);
+    	
+		Collections.sort(resultList2, new Comparator<FailSortObject>() {
+			@Override
+			public int compare(FailSortObject o1, FailSortObject o2) {
+				if(o1.getFailRating() > o2.getFailRating()){
+					return -1;
+				}else if(o1.getFailRating() < o2.getFailRating()){
+					return 1;
+				}else{
+					return 0;
+				}
+			}
+		});
+
+    	int listSize = resultList2.size();
+    	answer = new int[listSize];
+    	for(i = 0 ; i < listSize; i++){
+    		answer[i] = resultList2.get(i).getIdx();
+    	}
+    	
+        return answer;
+    }
+    
+    
+    public static class FailSortObject{
+    	
+    	private int idx;
+    	private float failRating;
+    	
+    	public int getIdx() {
+			return idx;
+		}
+		public void setIdx(int idx) {
+			this.idx = idx;
+		}
+		public float getFailRating() {
+			return failRating;
+		}
+		public void setFailRating(float failRating) {
+			this.failRating = failRating;
+		}
+    	
+    }
 }
+
+/**
+ *
+ * 
+ * public int[] solution(int N, int[] stages){
+        int[] answer = {};
+        answer = new int[N];
+
+        List<item> list = new LinkedList<item>();
+
+        for(int i = 1; i <= N; i++){
+            int stagePeople = 0;
+            int challengePeople = 0;
+            for(int j = 0; j < stages.length; j++){
+                if(i <= stages[j]){
+                    stagePeople++;
+                    if( i == stages[j]){
+                        challengePeople++;
+                    }
+                }
+            }
+
+            double fail = (double)challengePeople / (double)stagePeople;
+            list.add(new item(i, fail));
+        }
+
+        Collections.sort(list, new Comparator<item>(){
+            @Override
+            public int compare(item i1, item i2){
+                System.out.println(i1.index + " vs " + i2.index);
+                if(i1.fail > i2.fail){
+                    return -1;
+                } else if(i1.fail < i2.fail){
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+        for(int i = 0; i < list.size(); i++){
+            answer[i] = list.get(i).index;
+        }
+        return answer;
+    }
+
+    class item {
+        public int index;
+        public double fail;
+        public item(int i, double f){
+            this.index = i;
+            this.fail = f;
+        }
+    }
+}
+ * 
+*/
