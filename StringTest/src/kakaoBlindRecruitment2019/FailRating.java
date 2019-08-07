@@ -66,10 +66,10 @@ import java.util.Map;
 public class FailRating {
 	
 	public static void main(String[] args) {
-		//int N = 5;
-		//int [] stages = {2, 1, 2, 6, 2, 4, 3, 3};		
-		int N = 4;
-		int [] stages = {4, 4, 4, 4, 4};
+		int N = 5;
+		int [] stages = {2, 1, 2, 6, 2, 4, 3, 3};		
+		//int N = 4;
+		//int [] stages = {4, 4, 4, 4, 4};
 		//solution(N,stages);
 		int[] rst = solution2(N,stages);
 		for(int i = 0 ; i < rst.length ; i++){
@@ -194,61 +194,36 @@ public class FailRating {
         return answer;
     }
     
-    
+    //문제 수정 후 완료. 이중 for문을 사용해도 된다. 속도를 너무 빠르게 하려고 하지 말고 간단하게 풀이해도 괜찮다. 어렵게 생각하지말자.
     public static int[] solution2(int N, int[] stages) {
     	
     	int[] answer = {};
     	
-    	Arrays.sort(stages);
     	int stagesLength = stages.length;
-    	int remainUser = stagesLength;
-    	int curStageUser = 0;
     	List<FailSortObject> resultList2 = new ArrayList<FailSortObject>();
     	
     	Float failRating = null;
     	int i = 0;
-    	int firstStage =stages[0]; // 첫번째 배열의 스테이지.
-    	FailSortObject failSortObject = null; 
-    	if(firstStage > 1){
-    		for(i = 0 ; i < firstStage-1; i++){
-    			failSortObject = new FailSortObject();
-    			failSortObject.setIdx(i+1);
-    			failSortObject.setFailRating((float) 0.0);
-    			resultList2.add(failSortObject);
-    			
-        	}
-    	}
-    	//remainUser = remainUser - i;
-    	int curStage = firstStage;
-    	
-    	for(i=0 ;i < stagesLength; i++){
-
-    		if(stages[i] > N){
-    			failRating = (float)curStageUser/remainUser;
-    			curStageUser = 0;
-    			failSortObject = new FailSortObject();
-    			failSortObject.setIdx(resultList2.size()+1);
-    			failSortObject.setFailRating(failRating);
-    			resultList2.add(failSortObject);
-    			break;
-    		}else if(curStage < stages[i]){
-    			failRating = (float)curStageUser/remainUser;
-    			curStage = stages[i];
-    			remainUser = remainUser - curStageUser;
-    			failSortObject = new FailSortObject();
-    			failSortObject.setIdx(resultList2.size()+1);
-    			failSortObject.setFailRating(failRating);
-    			resultList2.add(failSortObject);
-    			curStageUser = 1;
-    		}else if(curStage == stages[i] || stages[i] == N){
-    			curStageUser++;
+    	FailSortObject failSortObject = null;
+    	int remainUsers = 0;
+    	int challanger = 0;
+    	for(int j = 1 ; j <= N ; j++){
+    		remainUsers = 0;
+    		challanger = 0;
+    		for(int k = 0 ; k < stagesLength ; k++){
+    			if(j <= stages[k]){
+    				remainUsers++;
+    				if(j == stages[k]){
+    					challanger++;
+    				}
+    			}
     		}
+    		failRating = (float)challanger / (float)remainUsers;
+    		failSortObject = new FailSortObject();
+    		failSortObject.setIdx(j);
+			failSortObject.setFailRating(failRating);
+			resultList2.add(failSortObject);
     	}
-    	failRating = (float)curStageUser/remainUser;
-		failSortObject = new FailSortObject();
-		failSortObject.setIdx(resultList2.size()+1);
-		failSortObject.setFailRating(failRating);
-		resultList2.add(failSortObject);
     	
 		Collections.sort(resultList2, new Comparator<FailSortObject>() {
 			@Override
