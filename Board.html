@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	$('#exceptionBtn1').click(function() { // (A)
+	    try {
+	        $.getJSON('http://dev.nanum.co.kr:8888/api/members', function (res) { // (B)
+	            // 에러 발생 코드
+	            alert("1");
+	        	console.log(res);
+	            throw "예외처리되는지 강제예외";
+	        });
+	    } catch (e) {
+	        console.log('Error : ' + e.message);
+	    }
+	});
+
+	$('#exceptionBtn2').click(function() { // (A)
+	    $.getJSON('http://dev.nanum.co.kr:8888/api/members', function (res) { // (B)
+	        try {
+	            // 에러 발생 코드
+	            alert("2");
+	            console.log(res);
+	        	throw "예외처리되는지 강제예외";
+	        } catch (e) {
+	            console.log('Error : ' + e.message);
+	        }
+	    });
+	});
+});
+
+</script>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판 입니다.</title>
+</head>
+<body>
+<table>
+	<tr>
+		<td>1111</td>
+		<td>2222</td>
+	</tr>
+</table>
+<input type="button" id='exceptionBtn1' value="예외발생버튼1">
+<input type="button" id='exceptionBtn2' value="예외발생버튼2">
+
+
+</body>
+</html>
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><%=title%></title>
+</head>
+<body>
+<h1>
+Hello EJS !!!!!!!!!!!!!
+message : <%=message%>
+</h1>
+<table style="border: 1px solid black; width: 600px;">
+<% loopData.forEach(function(val){ %>
+<tr>
+    <td style="border: 1px solid red;"><%= val %></td>
+</tr>
+<% })%>
+</table>
+
+</body>
+</html>
