@@ -2,6 +2,13 @@ package baekJoon;
 
 import java.util.Scanner;
 
+/**
+ * 값들의 합이 int 범위를 넘어서면 long 을 써야한다.
+ * 따라서 어떤 primitive 타입을 사용 할 지 문제의 조건을 확인하고 진행하자.
+ * 
+ * @author JJI
+ *
+ */
 public class GCDSum {
 
 	public static void main(String[] args) {
@@ -11,19 +18,19 @@ public class GCDSum {
 		int testCaseCnt = sc.nextInt();
 		int lineTestCnt;
 		
-		int firstInput;
-		int secondInput;
-		int r = 1;
-		int originA;
-		int originB;
+		long firstInput;
+		long secondInput;
+		long r = 1;
+		long originA;
+		long originB;
 		
-		int sumOfGCM = 0;
+		long sumOfGCM = 0;
 		
-		int [] GCDAry = null;
+		long [] GCDAry = null;
 		
 		for(int i = 0 ; i < testCaseCnt ; i++){
 			lineTestCnt = sc.nextInt();
-			GCDAry = new int[lineTestCnt];
+			GCDAry = new long[lineTestCnt];
 			
 			for(int j = 0 ; j < lineTestCnt; j++){
 				GCDAry[j] = sc.nextInt();
