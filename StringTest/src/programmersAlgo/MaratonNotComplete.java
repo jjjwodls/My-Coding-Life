@@ -39,30 +39,57 @@ public class MaratonNotComplete {
 		String[] participant = {"mislav", "stanko", "mislav", "ana"};
 		String[] completion = {"stanko", "ana", "mislav"};
 		System.out.println(solution(participant,completion));
+		
 	}
 	
 	public static String solution(String[] participant, String[] completion) {
         String answer = "";
-        String sameName = "";
+        Integer sameName = null;
+         
         
-        Map<String,String> map = new HashMap<String,String>();
+        Map<String,Integer> partiMap = new HashMap<String,Integer>();
+        Map<String,Integer> compleMap = new HashMap<String,Integer>();
+        
         int participantLen = participant.length;
         int completionLen = completion.length;
         int i;
-        
-        for(i = 0 ; i < completionLen ; i++) {
-        	map.put(completion[i], completion[i]);
+        for(i = 0 ; i < participantLen ; i++) {
+        	sameName = partiMap.get(participant[i]);
+        	if(sameName == null) {
+        		partiMap.put(participant[i],0);
+        	}else {
+        		partiMap.put(participant[i],++sameName);
+        	}
         }
         
-        for(i = 0 ; i < participantLen ; i++) {
-        	answer = map.get(participant[i]);
-        	if(answer == null || answer.length() == 0 || sameName.equals(answer)) {
-        		answer = participant[i];
+        for(i = 0 ; i < completionLen ; i++) {
+        	sameName = compleMap.get(completion[i]);
+        	if(sameName == null) {
+        		compleMap.put(completion[i],0);
+        	}else {
+        		compleMap.put(completion[i],++sameName);
         	}
-        	sameName = participant[i];
+        }
+        Integer a = null;
+        Integer b = null;
+        
+        for(i = 0 ; i < participantLen ; i++) {
+        	sameName = compleMap.get(participant[i]);
+        	if(sameName == null) {
+        		answer = participant[i];
+        		break;
+        	}else {
+        		a = compleMap.get(participant[i]);
+        		b = partiMap.get(participant[i]);
+        		if(a != b) {
+        			answer = participant[i];
+        			break;
+        		}
+        	}
         }
         
         return answer;
+       
     }
 
 }
