@@ -42,7 +42,7 @@ public class MaratonNotComplete {
 		
 	}
 	
-	public static String solution(String[] participant, String[] completion) {
+/*	public static String solution(String[] participant, String[] completion) {
         String answer = "";
         Integer sameName = null;
          
@@ -70,8 +70,7 @@ public class MaratonNotComplete {
         		compleMap.put(completion[i],++sameName);
         	}
         }
-        Integer a = null;
-        Integer b = null;
+        Integer b = null; //참여자 명부에 있는 
         
         for(i = 0 ; i < participantLen ; i++) {
         	sameName = compleMap.get(participant[i]);
@@ -79,9 +78,64 @@ public class MaratonNotComplete {
         		answer = participant[i];
         		break;
         	}else {
-        		a = compleMap.get(participant[i]);
         		b = partiMap.get(participant[i]);
-        		if(a != b) {
+        		if(sameName != b) {
+        			answer = participant[i];
+        			break;
+        		}
+        	}
+        }
+        
+        return answer;
+       
+    }*/
+
+	//2번방법 for문을 줄여보자.
+	public static String solution(String[] participant, String[] completion) {
+        String answer = "";
+        Integer partiCnt = null;
+        Integer compleCnt = null;
+         
+        
+        Map<String,Integer> partiMap = new HashMap<String,Integer>();
+        Map<String,Integer> compleMap = new HashMap<String,Integer>();
+        
+        int participantLen = participant.length;
+        int i;
+        String aryTemp = "";
+        for(i = 0 ; i < participantLen-1; i++) {
+        	aryTemp = participant[i];
+        	partiCnt = partiMap.get(aryTemp);
+        	if(partiCnt == null) {
+        		partiMap.put(aryTemp,0);
+        	}else {
+        		partiMap.put(aryTemp,++partiCnt);
+        	}
+        	aryTemp = completion[i];
+        	compleCnt = compleMap.get(aryTemp);
+        	if(compleCnt == null) {
+        		compleMap.put(aryTemp,0);
+        	}else {
+        		compleMap.put(aryTemp,++compleCnt);
+        	}
+        }
+        
+        partiCnt = partiMap.get(participant[participantLen-1]);
+    	if(partiCnt == null) {
+    		partiMap.put(participant[participantLen-1],0);
+    	}else {
+    		partiMap.put(participant[participantLen-1],++partiCnt);
+    	}
+        
+        for(i = 0 ; i < partiMap.size() ; i++) {
+        	aryTemp = participant[i];
+        	compleCnt = compleMap.get(aryTemp);
+        	if(compleCnt == null) {
+        		answer = participant[i];
+        		break;
+        	}else {
+        		partiCnt = partiMap.get(aryTemp);
+        		if(compleCnt != partiCnt) {
         			answer = participant[i];
         			break;
         		}
@@ -91,5 +145,4 @@ public class MaratonNotComplete {
         return answer;
        
     }
-
 }
