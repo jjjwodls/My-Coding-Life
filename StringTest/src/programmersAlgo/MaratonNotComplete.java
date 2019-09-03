@@ -1,7 +1,10 @@
 package programmersAlgo;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 		
 /**
  * 
@@ -32,6 +35,8 @@ vinko는 참여자 명단에는 있지만, 완주자 명단에는 없기 때문�
 
 예제 #3
 mislav는 참여자 명단에는 두 명이 있지만, 완주자 명단에는 한 명밖에 없기 때문에 한명은 완주하지 못했습니다.
+
+
  */
 public class MaratonNotComplete {
 
@@ -91,7 +96,7 @@ public class MaratonNotComplete {
     }*/
 
 	//2번방법 for문을 줄여보자.
-	public static String solution(String[] participant, String[] completion) {
+	/*public static String solution(String[] participant, String[] completion) {
         String answer = "";
         Integer partiCnt = null;
         Integer compleCnt = null;
@@ -119,7 +124,6 @@ public class MaratonNotComplete {
         		compleMap.put(aryTemp,++compleCnt);
         	}
         }
-        
         partiCnt = partiMap.get(participant[participantLen-1]);
     	if(partiCnt == null) {
     		partiMap.put(participant[participantLen-1],0);
@@ -143,6 +147,26 @@ public class MaratonNotComplete {
         }
         
         return answer;
+       
+    }*/
+	
+	/*3번문제 (다른문제 정답 가져옴 정렬 하자 그냥) 동명이인은 이름이 같은 딱 두사람만 있기 때문에 정렬 하면 금방 끝난다. 동명이인이 아닌 여러 사람이 이름이 같은 사람이 존재할 수도 있다 생각했따 (3명이상) 하지만 그래도 상관없이
+	어차피 정렬하면 이름 같은 사람들도 세명이 나란히 있을거니까 거기서 어긋나면 그 사람은 완주하지 못한사람이니까 
+	문제의 핵심인 동명이인이므로 정렬 한다음 비교만 하면 그냥 끝나는데 너무 어렵게 생각했다... 여기에 얼마나 많은 시간을 허비한건지....*/
+	
+	public static String solution(String[] participant, String[] completion) {
+        String answer = "";
+        
+        Arrays.sort(participant);
+        Arrays.sort(completion);
+        
+        for(int i = 0 ; i < completion.length; i++){
+        	if(!participant[i].equals(completion[i])){
+        		return answer = participant[i];
+        	}
+        }
+        
+        return participant[participant.length -1];
        
     }
 }
