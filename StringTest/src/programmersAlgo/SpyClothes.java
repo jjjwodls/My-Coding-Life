@@ -52,6 +52,9 @@ import javax.swing.text.html.HTMLDocument.Iterator;
  * 
  * @author JJI
  * 
+ * 재귀 참고사이트 : https://bumbums.tistory.com/2 
+ * 그냥은 안풀린다...
+ * 
  */
 public class SpyClothes {
 
@@ -86,7 +89,6 @@ public class SpyClothes {
 			clothTypeCnt[i] = clothMap.get(key); //각 옷 종류별로 몇개씩 들어있는지 int 형 배열에 담는다.
 			i++;
 		}
-		
 		int k = 0;
 		for(i = 0 ; i < clothTypeCnt.length ; i++){
 			k = clothTypeCnt[i];
