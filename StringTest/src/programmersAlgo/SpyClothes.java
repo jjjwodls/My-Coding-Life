@@ -1,11 +1,7 @@
 package programmersAlgo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
+import java.util.Stack;
 
 /**
  * 문제 설명 스파이들은 매일 다른 옷을 조합하여 입어 자신을 위장합니다.
@@ -57,9 +53,17 @@ import javax.swing.text.html.HTMLDocument.Iterator;
  * 
  */
 public class SpyClothes {
-
+	
+	public static int[] clothTypeCnt = null;
+	public static Stack<Integer> st = new Stack<Integer>();
+	public static int result=  0;
+	
 	public static void main(String[] args) {
-		String[][] clothes = {{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"},{"green_turban", "headgear"}};
+		//String[][] clothes = {{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"},{"green_turban", "headgear"}};
+		String[][] clothes = {{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"},{"white_turban", "pants"},
+		{"red_hat", "headgear"}, {"black_sunglasses", "eyewear"},{"green_turban", "pants"},
+		{"blue_hat", "headgear"}, {"red_sunglasses", "eyewear"}};
+		
 		/*System.out.println(clothes.length);
 		System.out.println(clothes[0].length);*/
 		solution(clothes);
@@ -81,7 +85,8 @@ public class SpyClothes {
 				clothMap.put(clothType,++clothCnt);
 			}
 		}
-		int [] clothTypeCnt = new int[clothMap.size()];
+		/*int [] clothTypeCnt = new int[clothMap.size()];*/
+		clothTypeCnt = new int[clothMap.size()];
 		i = 0;
 		//HashMap에 들어있는 key를 가져와 핸들링하는 방법
 		for(String key : clothMap.keySet()){
@@ -89,18 +94,68 @@ public class SpyClothes {
 			clothTypeCnt[i] = clothMap.get(key); //각 옷 종류별로 몇개씩 들어있는지 int 형 배열에 담는다.
 			i++;
 		}
-		int k = 0;
+		/*int k = 0;
 		for(i = 0 ; i < clothTypeCnt.length ; i++){
 			k = clothTypeCnt[i];
 			for(int j = i+1 ; j < clothTypeCnt.length; j++){
 				answer += clothTypeCnt[j]*k;
 			}
+		}*/
+		
+		/*for(i = 0 ; i < clothTypeCnt.length ; i++){
+			System.out.println(clothTypeCnt[i]);
+		}*/
+		for(i = 2 ; i <= clothTypeCnt.length ; i++){
+			doCombination(clothTypeCnt.length,i,0); 
 		}
+		answer = result + clothesLength;
 		
 		//옷 종류별로 경우의 수를 구한다. ex ) 배열에 [3,3,2] => 옷의 타입별로 존재하는 갯수들이므로 연산이 필요함.
 		
-        
         return answer;
     }
+	
+	 public static  void showStack(){
+	        //스택에 있는 값들을 출력한다.
+		 	int rst = 1;
+	        for(int i=0;i<st.size();i++){
+	            System.out.print(st.get(i)+" ");
+	            rst *= st.get(i);
+	        }
+	        result += rst; 
+	        System.out.println(result);
+    }
+	 
+     public static void doCombination(int n, int r, int index){
+        // n : 전체 개수
+        // r : 뽑을 개수
+        // index 배열이다보니 현재 배열의 어디를 가리키고 있는지 필요하므로.
+        if(r==0){
+            //0개를 뽑는다는건 더 이상 뽑을 것이 없다는 말과 같으므로  스택을 출력하고 함수를 종료한다.
+        	showStack();
+            return;
+        }
+        else if(n==r){
+            //nCr 이라는 건 나머지를 전부 뽑겠다는 말과 같으므로 전부 스택에 넣은 후 출력하면 된다.
+            for(int i=0;i<n;i++)st.add(clothTypeCnt[index+i]);//index부터 n개를 차례대로 스택에 넣고
+            showStack(); //스택을 보여준다.
+            for(int i=0;i<n;i++)st.pop(); //이후 전부 pop을 시켜 다음 과정을 진행한다.
+        }
+        else{
+            //저 두가지 예외 사항을 빼면 점화식대로 진행하면 된다.
+             
+            //index를 포함하는 경우
+            st.add(clothTypeCnt[index]);
+            doCombination(n-1,r-1,index+1); //index를 스택에 넣은상태로 index를 1옮겨 그대로 진행.
+             
+            //index를 포함하지 않는 경우
+            st.pop(); //index를 제거해주고
+            doCombination(n-1, r, index+1); //index를 제외한 상태에서 n-1Cr 진행.
+             
+             
+        }
+        return;
+    }
+
 
 }
