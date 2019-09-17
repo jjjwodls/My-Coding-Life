@@ -51,8 +51,8 @@ import java.util.Map;
 public class BestAlbum {
 	
 	public static void main(String[] args) {
-		String [] genres = {"classic", "pop", "classic", "classic", "pop"};
-		int[] plays = {500, 600, 150, 800, 2500};
+		String [] genres = {"classic", "pop", "classic", "classic", "pop","classic","classic"};
+		int[] plays = {200, 600, 150, 800, 2500, 200,200};
 		
 		solution(genres, plays);
 	}
@@ -131,7 +131,6 @@ public class BestAlbum {
 			album.setIdx(i);
 			album.setGenre(genres[i]);
 			album.setPlaysCnt(plays[i]);
-			albumList.add(album);
 			
 			playCntTmp = albumMap.get(genres[i]);
 			if(playCntTmp == null){
@@ -139,10 +138,34 @@ public class BestAlbum {
 			}else{
 				albumMap.put(genres[i], playCntTmp+plays[i]);
 			}
-			//hashMap 에 리스트를 담자.
+			
+			playCntTmp = albumMap.get(genres[i]);
+			album.setTotalPlay(playCntTmp);
+			albumList.add(album);
 		}
 		
+		List<Album> hashMapList = new ArrayList<Album>();
+		Album hashMapAlbum = null;
+		for(String genreKey : albumMap.keySet()){
+			hashMapAlbum = new Album();
+			hashMapAlbum.setGenre(genreKey);
+			hashMapAlbum.setTotalPlay(albumMap.get(genreKey));
+			hashMapList.add(hashMapAlbum);
+		}
 		
+		Collections.sort(hashMapList, new Comparator<Album>() {
+
+			@Override
+			public int compare(Album o1, Album o2) {
+				if(o1.totalPlay < o2.totalPlay){
+					return 1;
+				}else if(o1.totalPlay > o2.totalPlay){
+					return -1;
+				}else{
+					return 0;
+				}
+			}
+		});
 		
 		Collections.sort(albumList, new Comparator<Album>() {
 
@@ -157,6 +180,44 @@ public class BestAlbum {
 				}
 			}
 		});
+		
+		String firstGenre = null;
+		String secondGenre = null;
+		List<Integer> albumIdx = new ArrayList<Integer>();
+		if(hashMapList.size() == 1){
+			firstGenre = hashMapList.get(0).getGenre();
+			for(int i = 0 ; i < albumList.size(); i++){
+				
+			}
+		}else{
+			firstGenre = hashMapList.get(0).getGenre();
+			secondGenre = hashMapList.get(1).getGenre();
+			
+			
+		}
+		
+		for(Album albumObj : albumList){
+			System.out.println(albumObj);
+		}
+		Album temp = null;
+		Album temp2 = null;
+		String tempGenre = null;
+		List<Integer> albumIdxList = new ArrayList<Integer>();
+		boolean flag = false;
+		for(int i = 0 ; i < albumList.size() ; i++){
+			temp = albumList.get(i);
+			tempGenre = temp.getGenre();
+			for(int j = i+1; j < albumList.size() ; j++){
+				temp2 = albumList.get(j);
+				if(tempGenre.equals(temp2.getGenre())){
+					albumIdxList.add(temp.getIdx());
+					albumIdxList.add(temp2.getIdx());
+					break;
+				}
+			}
+		}
+		
+		/*
 		String albumGenre = null;
 		String albumGenre2 = null;
 		List<Integer> idxList = new ArrayList<Integer>();
@@ -183,7 +244,7 @@ public class BestAlbum {
 			}
 			flag = true;
 		}
-		
+		*/
 		return answer;
 	}
 	
