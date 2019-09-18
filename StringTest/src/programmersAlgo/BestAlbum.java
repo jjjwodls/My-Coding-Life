@@ -45,14 +45,20 @@ import java.util.Map;
  * 
  * ※ 공지 - 2019년 2월 28일 테스트케이스가 추가되었습니다.
  * 
+ * 아... 문제 잘못이해해서 쉬운거 놓쳤네 ... 
+ * => 모든 장르별로 2개씩이었네요. 2개의 장르에서 2개씩으로 생각하고 코드를 작성하니 온갖 방법으로 짜도 제대로 동작할 리가 없긴 하네요... => 이 사람의 질문 보고 맞힘...
+ * 
  * @author JJI
  * 
  */
 public class BestAlbum {
 	
 	public static void main(String[] args) {
-		String [] genres = {"classic", "pop", "classic", "classic", "test","classic","classic"};
-		int[] plays = {200, 600, 150, 800, 2500, 200,200};
+		/*String [] genres = {"classic", "pop", "classic", "classic", "test","classic","classic"};
+		int[] plays = {200, 600, 150, 800, 2500, 200,200};*/
+		
+		String [] genres = {"classic","pop","classic","pop","classic","classic"};
+		int[] plays = {400,600,150,2500,500,500}; 
 		
 		solution(genres, plays);
 	}
@@ -194,11 +200,30 @@ public class BestAlbum {
 		});	
 		
 		String firstGenre = null;
-		String secondGenre = null;
 		List<Integer> albumIdx = new ArrayList<Integer>();
 		Album listGetAlbum = null;
 		int albumIdxSize = 0;
-		if(hashMapList.size() == 1){
+		
+		for(int i = 0 ; i < hashMapList.size() ; i++){
+			firstGenre = hashMapList.get(i).getGenre();
+			if(albumSizeMap.get(firstGenre) == 1){
+				albumIdx.add(albumIdxMap.get(firstGenre));
+			}else{
+				for(int j = 0 ; j < albumList.size(); j++){
+					listGetAlbum = albumList.get(j);
+					if(firstGenre.equals(listGetAlbum.getGenre())){
+						albumIdx.add(listGetAlbum.getIdx());
+						albumIdxSize++;
+					}
+					if(albumIdxSize == 2){
+						break;
+					}
+				}
+			}
+			albumIdxSize = 0;
+		}
+		
+		/*if(hashMapList.size() == 1){
 			firstGenre = hashMapList.get(0).getGenre();
 			if(albumSizeMap.get(firstGenre) == 1){
 				albumIdx.add(albumIdxMap.get(firstGenre));
@@ -247,7 +272,7 @@ public class BestAlbum {
 					}
 				}
 			}
-		}
+		}*/
 		answer = new int[albumIdx.size()];
 		
 		for(int i = 0 ; i < albumIdx.size() ; i++){
@@ -309,6 +334,122 @@ public class BestAlbum {
 			flag = true;
 		}
 		*/
+		return answer;
+	}
+	
+	
+	/**
+	 * 제대로 정리된 정답. 
+	 * 문제를 제대로 이해 못해서 못풀었다..
+	 * @param genres 장르
+	 * @param plays 재생수
+	 * @return
+	 */
+	public static int[] solution2(String[] genres, int[] plays) {
+		int[] answer = {};
+		int genresLength = genres.length;
+		
+		List<Album> albumList = new ArrayList<Album>();
+		Album album = null;
+		Map<String,Integer> albumMap = new HashMap<String,Integer>();
+		Map<String,Integer> albumSizeMap = new HashMap<String,Integer>();
+		Map<String,Integer> albumIdxMap = new HashMap<String,Integer>();
+		
+		Integer playCntTmp = null;
+		Integer albumSize = null;
+		
+		for(int i = 0 ; i < genresLength ; i ++){ //looping 을 만번까지 돌 수 있다. 따라서 해당 albumList 사이즈 만큼 하단에서 안돌수 있게끔 처리해야된다.
+			album = new Album();
+			album.setIdx(i);
+			album.setGenre(genres[i]);
+			album.setPlaysCnt(plays[i]);
+			
+			playCntTmp = albumMap.get(genres[i]);
+			albumSize = albumSizeMap.get(genres[i]);
+					
+			if(playCntTmp == null){
+				albumMap.put(genres[i], plays[i]);
+				albumSizeMap.put(genres[i], 1);
+			}else{
+				albumMap.put(genres[i], playCntTmp+plays[i]);
+				albumSizeMap.put(genres[i], albumSize+1);
+			}
+			
+			if(albumSizeMap.get(genres[i]) == 1){
+				albumIdxMap.put(genres[i], i);
+			}
+			playCntTmp = albumMap.get(genres[i]);
+			album.setTotalPlay(playCntTmp);
+			albumList.add(album);
+		}
+		
+		List<Album> hashMapList = new ArrayList<Album>();
+		
+		Album hashMapAlbum = null;
+		for(String genreKey : albumMap.keySet()){
+			hashMapAlbum = new Album();
+			hashMapAlbum.setGenre(genreKey);
+			hashMapAlbum.setTotalPlay(albumMap.get(genreKey));
+			hashMapList.add(hashMapAlbum);
+		}
+		
+		Collections.sort(hashMapList, new Comparator<Album>() {
+
+			@Override
+			public int compare(Album o1, Album o2) {
+				if(o1.totalPlay < o2.totalPlay){
+					return 1;
+				}else if(o1.totalPlay > o2.totalPlay){
+					return -1;
+				}else{
+					return 0;
+				}
+			}
+		});
+		
+		Collections.sort(albumList, new Comparator<Album>() {
+
+			@Override
+			public int compare(Album o1, Album o2) {
+				if(o1.playsCnt < o2.playsCnt){
+					return 1;
+				}else if(o1.playsCnt > o2.playsCnt){
+					return -1;
+				}else{
+					return 0;
+				}
+			}
+		});	
+		
+		String firstGenre = null;
+		List<Integer> albumIdx = new ArrayList<Integer>();
+		Album listGetAlbum = null;
+		int albumIdxSize = 0;
+		
+		for(int i = 0 ; i < hashMapList.size() ; i++){
+			firstGenre = hashMapList.get(i).getGenre();
+			if(albumSizeMap.get(firstGenre) == 1){
+				albumIdx.add(albumIdxMap.get(firstGenre));
+			}else{
+				for(int j = 0 ; j < albumList.size(); j++){
+					listGetAlbum = albumList.get(j);
+					if(firstGenre.equals(listGetAlbum.getGenre())){
+						albumIdx.add(listGetAlbum.getIdx());
+						albumIdxSize++;
+					}
+					if(albumIdxSize == 2){
+						break;
+					}
+				}
+			}
+			albumIdxSize = 0;
+		}
+		
+		answer = new int[albumIdx.size()];
+		
+		for(int i = 0 ; i < albumIdx.size() ; i++){
+			answer[i] = albumIdx.get(i);
+		}
 		return answer;
 	}
 	
