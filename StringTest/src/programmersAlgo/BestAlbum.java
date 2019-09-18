@@ -51,7 +51,7 @@ import java.util.Map;
 public class BestAlbum {
 	
 	public static void main(String[] args) {
-		String [] genres = {"classic", "pop", "classic", "classic", "pop","classic","classic"};
+		String [] genres = {"classic", "pop", "classic", "classic", "test","classic","classic"};
 		int[] plays = {200, 600, 150, 800, 2500, 200,200};
 		
 		solution(genres, plays);
@@ -118,33 +118,45 @@ public class BestAlbum {
 	public static int[] solution(String[] genres, int[] plays) {
 		int[] answer = {};
 		int genresLength = genres.length;
-		//int playsLength = plays.length;
 		
 		List<Album> albumList = new ArrayList<Album>();
 		Album album = null;
 		Map<String,Integer> albumMap = new HashMap<String,Integer>();
+		Map<String,Integer> albumSizeMap = new HashMap<String,Integer>();
+		Map<String,Integer> albumIdxMap = new HashMap<String,Integer>();
+		
+		
 		
 		Integer playCntTmp = null;
+		Integer albumSize = null;
 		
-		for(int i = 0 ; i < genresLength ; i ++){
+		for(int i = 0 ; i < genresLength ; i ++){ //looping 을 만번까지 돌 수 있다. 따라서 해당 albumList 사이즈 만큼 하단에서 안돌수 있게끔 처리해야된다.
 			album = new Album();
 			album.setIdx(i);
 			album.setGenre(genres[i]);
 			album.setPlaysCnt(plays[i]);
 			
 			playCntTmp = albumMap.get(genres[i]);
+			albumSize = albumSizeMap.get(genres[i]);
+					
 			if(playCntTmp == null){
 				albumMap.put(genres[i], plays[i]);
+				albumSizeMap.put(genres[i], 1);
 			}else{
 				albumMap.put(genres[i], playCntTmp+plays[i]);
+				albumSizeMap.put(genres[i], albumSize+1);
 			}
 			
+			if(albumSizeMap.get(genres[i]) == 1){
+				albumIdxMap.put(genres[i], i);
+			}
 			playCntTmp = albumMap.get(genres[i]);
 			album.setTotalPlay(playCntTmp);
 			albumList.add(album);
 		}
 		
 		List<Album> hashMapList = new ArrayList<Album>();
+		
 		Album hashMapAlbum = null;
 		for(String genreKey : albumMap.keySet()){
 			hashMapAlbum = new Album();
@@ -179,27 +191,79 @@ public class BestAlbum {
 					return 0;
 				}
 			}
-		});
+		});	
 		
 		String firstGenre = null;
 		String secondGenre = null;
 		List<Integer> albumIdx = new ArrayList<Integer>();
+		Album listGetAlbum = null;
+		int albumIdxSize = 0;
 		if(hashMapList.size() == 1){
 			firstGenre = hashMapList.get(0).getGenre();
-			for(int i = 0 ; i < albumList.size(); i++){
-				
+			if(albumSizeMap.get(firstGenre) == 1){
+				albumIdx.add(albumIdxMap.get(firstGenre));
+			}else{
+				for(int i = 0 ; i < albumList.size(); i++){
+					listGetAlbum = albumList.get(i);
+					if(firstGenre.equals(listGetAlbum.getGenre())){
+						albumIdx.add(listGetAlbum.getIdx());
+					}
+					if(albumIdx.size() == 2){
+						break;
+					}
+				}
 			}
+			
 		}else{
 			firstGenre = hashMapList.get(0).getGenre();
 			secondGenre = hashMapList.get(1).getGenre();
 			
+			if(albumSizeMap.get(firstGenre) == 1){
+				albumIdx.add(albumIdxMap.get(firstGenre));
+			}else{
+				for(int i = 0 ; i < albumList.size(); i++){
+					listGetAlbum = albumList.get(i);
+					if(firstGenre.equals(listGetAlbum.getGenre())){
+						albumIdx.add(listGetAlbum.getIdx());
+					}
+					if(albumIdx.size() == 2){
+						break;
+					}
+				}
+			}
+			albumIdxSize = albumIdx.size();
 			
+			
+			if(albumSizeMap.get(secondGenre) == 1){
+				albumIdx.add(albumIdxMap.get(secondGenre));
+			}else{
+				for(int i = 0 ; i < albumList.size(); i++){
+					listGetAlbum = albumList.get(i);
+					if(secondGenre.equals(listGetAlbum.getGenre())){
+						albumIdx.add(listGetAlbum.getIdx());
+					}
+					if(albumIdx.size() == albumIdxSize+2){
+						break;
+					}
+				}
+			}
+		}
+		answer = new int[albumIdx.size()];
+		
+		for(int i = 0 ; i < albumIdx.size() ; i++){
+			answer[i] = albumIdx.get(i);
 		}
 		
-		for(Album albumObj : albumList){
-			System.out.println(albumObj);
+		for(int i = 0 ; i < albumList.size(); i++){
+			System.out.println(albumList.get(i));
 		}
-		Album temp = null;
+		
+		for(int i = 0 ; i < answer.length ; i++){
+			System.out.println(answer[i]);
+		}
+		
+		
+		/*Album temp = null;
 		Album temp2 = null;
 		String tempGenre = null;
 		List<Integer> albumIdxList = new ArrayList<Integer>();
@@ -215,7 +279,7 @@ public class BestAlbum {
 					break;
 				}
 			}
-		}
+		}*/
 		
 		/*
 		String albumGenre = null;
@@ -282,6 +346,7 @@ public class BestAlbum {
 		public void setTotalPlay(int totalPlay) {
 			this.totalPlay = totalPlay;
 		}
+		
 		@Override
 		public String toString() {
 			return "idx = " + this.idx + " genre = " + this.genre + " playsCnt = " + this.playsCnt + " total = " + this.totalPlay;
