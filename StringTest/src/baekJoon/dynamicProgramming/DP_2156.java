@@ -5,6 +5,7 @@ import java.util.*;
  * @author jjjwodls
  * 패턴 찾는데 실패
  * 확인하고 정리.
+ * 패턴을 못찾아서 모든 경우의 수를 2차원 배열로 만들어서 최대값을 출력했다.
  */
 public class DP_2156 {
 
